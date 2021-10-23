@@ -1,0 +1,133 @@
+.sst-main-wrapper {
+  height: 45px;
+  display: none;
+}
+
+.sst-main-wrapper-active {
+    display:inline !important;
+}
+
+.sst-main-wrapper-inner {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.sst-twitch {
+	text-decoration: none;
+}
+
+.sst-twitch-logo-wrapper {
+  order: 0;
+  flex: 0 0 45px;
+  align-self: auto;
+  background: blue;
+  height: 45px;
+  background-color: #6441A4;
+  overflow: hidden;
+}
+
+.sst-icon-twitch img {
+  padding: 5px;
+}
+
+.sst-main-wrapper:hover .sst-twitch-logo-wrapper::after {
+  opacity: 0.35;
+}
+
+.sst-status-wrapper {
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  height: 45px;
+  line-height: 45px;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: #1E1E1F;
+  border: 0 solid #6441A4;
+  border-right-width: 2px;
+
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  transform: scaleX(0);
+
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  transition: all 1s ease;
+
+  -webkit-transform-origin: left top;
+  -moz-transform-origin: left top;
+  transform-origin: left top;
+}
+
+.sst-status-wrapper-active {
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+/* 'Live Now' marker */
+.sst-live-marker {
+  position: relative;
+  top: -1px;
+  
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: #E51919;
+  border-radius: 50%;
+
+  animation-name: LiveNow;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* 'Live Now' dot animation */
+@keyframes LiveNow {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.sst-status-text-live,
+.sst-status-text-offline {
+  display: none;
+  margin: 0 14px 0 13px;
+  opacity: 0;
+
+  font-family: 'Noto Sans Mono', Arial, Tahoma, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #C7C7C7;
+
+  -webkit-transform: translateY(-1px);
+  -moz-transform: translateY(-1px);
+  transform: translateY(-1px);
+
+  -webkit-transition: opacity 0.75s ease 1s;
+  -moz-transition: opacity 0.75s ease 1s;
+  transition: opacity 0.75s ease 1s;
+}
+
+.sst-status-text-live span,
+.sst-status-text-offline span {
+  -webkit-transition: color 0.25s ease;
+  -moz-transition: color 0.25s ease;
+  transition: color 0.25s ease;
+}
+
+.sst-current-status {
+  display: initial;
+}
+
+.sst-current-status-active {
+  opacity: 1;
+}
+
+.sst-main-wrapper:hover .sst-status-text-live span,
+.sst-main-wrapper:hover .sst-status-text-offline span {
+  color: #E9E9E9;
+  text-decoration: underline;
+}
