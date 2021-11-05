@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <?php 
-	$filemtime = filemtime(dirname(__FILE__) . '/status.css');
-	echo "<link rel='stylesheet' id='twitch-status' href='https://quack.me/streambadge/status.css?ver=$filemtime' type='text/css' media='all' /> \n";
+	$filemtime = filemtime(dirname(__FILE__) . '/css/status.css');
+	echo "<link rel='stylesheet' id='twitch-status' href='/streambadge/css/status.css?ver=$filemtime' type='text/css' media='all' /> \n";
 ?>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Mono">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -17,9 +17,8 @@ require_once('twitchWrapper.php');
 
 use TwitchApiClass\twitchWrapper;
 
-$call = new twitchWrapper();
-
 	if (!empty($_GET) && (!empty($_GET['user']))) {
+        $call = new twitchWrapper();
 		$username = htmlentities($_GET['user']);
 		$call->getUserStream($username);
 		if ($call->userIsLive()) {
@@ -64,7 +63,7 @@ jQuery(function() {
 		<div class="sst-main-wrapper-inner">
 			<!-- BEGIN TWITCH LOGO -->
 			<div class="sst-twitch-logo-wrapper">
-				<div class="sst-icon-twitch"><img src="https://quack.me/streambadge/image/twitch.svg" width="35" height="35" /></div>
+				<div class="sst-icon-twitch"><img src="/streambadge/image/twitch.svg" width="35" height="35" /></div>
 			</div>
 			<!-- END TWITCH LOGO -->
 			<!-- BEGIN STATUS -->
