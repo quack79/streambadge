@@ -2,15 +2,14 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<?php 
-$filemtime = filemtime(dirname(__FILE__) . '/css/status.min.css');
-echo '<link rel="stylesheet" href="css/status.min.css?ver=$filemtime" type="text/css" media="all" />' . "\n";
+<?php
+echo '<link rel="stylesheet" href="css/status.min.css?ver=' . filemtime(dirname(__FILE__) . '/css/status.min.css') . '" type="text/css" media="all" />' . "\n";
 ?>
 <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Noto+Sans+Mono">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
-<body> 
-<?php 
+<body>
+<?php
 require_once('twitchWrapper.php');
 use TwitchApiClass\twitchWrapper;
 
@@ -28,10 +27,10 @@ jQuery(function() {
   setTimeout(function() {
     jQuery('.twitch-status-live').addClass('twitch-current-status-active');
     jQuery('.twitch-status-wrapper').addClass('twitch-status-wrapper-active');
-  }, 25);  
-});					
+  }, 25);
+});
 </script>
-<?php 
+<?php
   include 'include.php';
   } else {
 ?>
@@ -46,11 +45,11 @@ jQuery(function() {
   }, 25);
 });
 </script>
-<?php 
+<?php
   include 'include.php';
   }
 } else {
-  echo "You need to specify a username!";	
+  echo "You need to specify a username!";
 }
 ?>
 </body>
