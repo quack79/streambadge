@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <?php 
-$filemtime = filemtime(dirname(__FILE__) . '/css/status.css');
-echo '<link rel="stylesheet" href="/streambadge/css/status.css?ver=$filemtime" type="text/css" media="all" />' . "\n";
+$filemtime = filemtime(dirname(__FILE__) . '/css/status.min.css');
+echo '<link rel="stylesheet" href="css/status.min.css?ver=$filemtime" type="text/css" media="all" />' . "\n";
 ?>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Mono">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.bunny.net/css?family=Noto+Sans+Mono">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body> 
 <?php 

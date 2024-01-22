@@ -1,13 +1,17 @@
-As this code uses the Twitch API, you need to register your application on the [Twitch developer site](https://dev.twitch.tv/console/apps/create). When creating the app, you will need to enter a redirect URI, basdic 
+As this code uses the Twitch API, you need to register your application on the [Twitch Developers](https://dev.twitch.tv/console/apps/create) site.
+When creating the app, you will need to enter an OAuth redirect URL - use the URL where the script will be located.
 
-Once you create a developer application, you are assigned a client ID, and you will need to create a client Secret as well.
+Choose "Website Integration" as the category and "Confidential" as Client Type
+
+Once you create a developer application, you are assigned a client ID, and you will need to create a client Secret.
 
 You will need to edit the twitchWrapper.php file and update the following lines:
 
->    private const CLIENT_ID = 'REDACTED'; 
->    private const CLIENT_SECRET = 'REDACTED';
+>    private const CLIENT_ID = 'CHANGEME';
+>    private const CLIENT_SECRET = 'CHANGEME';
+Replace CHANGEME with your new ID and Secret.
 
-Replaced REDACTED with your new ID and Secret.
+Check the location where the token will be saved on your server. It must NOT be publically accessible.
 
 Upload the files to your server and place this code in your HTML:
 
@@ -15,4 +19,4 @@ Upload the files to your server and place this code in your HTML:
 
 Replace TWITCHUSERNAME with the channel name you require.
 
-twitchWrapper.php is a modified version of corbpie's https://github.com/cp6/Twitch-API-class I simply removed all functions unnecessary for these needs.
+"twitchWrapper.php" is a modified version of corbpie's [Twitch-API-Class](https://github.com/cp6/Twitch-API-class),  I have simply removed all unnecessary functions.

@@ -1,12 +1,12 @@
 <?php
-
 namespace TwitchApiClass;
 
-class twitchWrapper
-{
-    private const CLIENT_ID = 'REDACTED'; 
-    private const CLIENT_SECRET = 'REDACTED';
-    private const TOKEN_FILENAME = 'accesstoken.txt'; // This is where your token will be stored
+class twitchWrapper {
+    private const CLIENT_ID = 'CHANGEME'; 
+    private const CLIENT_SECRET = 'CHANGEME';
+    private const TOKEN_FILENAME = '.twitchaccesstoken'; // This is where your token will be stored - make sure it's not web accessible!
+
+    // DON'T CHANGE ANYTHING BELOW THIS LINE!
 
     private const URI = 'https://api.twitch.tv'; // DO NOT CHANGE
     private const TWITCH_OUATH_URI = 'https://id.twitch.tv/oauth2'; // DO NOT CHANGE
@@ -15,13 +15,11 @@ class twitchWrapper
     private string $expires_dt = '';
     private array $stream_data = [];
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->getTokenFromFile();
     }
 
-    public function getTokenFromFile(): void
-    {
+    public function getTokenFromFile(): void {
         if (!file_exists(self::TOKEN_FILENAME)) { // Create the file if it doesn't exist
             $this->refreshToken();
         }
@@ -34,8 +32,7 @@ class twitchWrapper
         }
     }
 
-    public function refreshToken(): bool
-    {
+    public function refreshToken(): bool {
 		$url = self::TWITCH_OUATH_URI . "/token?client_id=" . self::CLIENT_ID . "&client_secret=" . self::CLIENT_SECRET . "&grant_type=client_credentials";
 		$data = $this->doCurl($url, "POST");
         $contents = '{"access_token": "' . $data['access_token'] . '", "expires": "' . $this->addSecondsToDateTime($data['expires_in']) . '"}';
@@ -44,26 +41,22 @@ class twitchWrapper
         return fclose($fp);
     }
 
-    private function GETHeaders(): array
-    {
+    private function GETHeaders(): array {
         return array("Authorization: Bearer $this->access_token", "Client-ID: " . self::CLIENT_ID);
     }
 
-    public function getUserStream(string $username): array
-    {
+    public function getUserStream(string $username): array {
         return $this->stream_data = $this->doCurl(self::URI . '/helix/streams?user_login=' . rawurlencode($username), 'GET', $this->GETHeaders());
     }
 
-    public function userIsLive(): ?bool
-    {
+    public function userIsLive(): ?bool {
         if (isset($this->stream_data['data'][0])) {
             return true; // Yes
         }
         return false; // No
     }
 
-    public function doCurl(string $url, string $type = 'GET', array $headers = [], array $post_fields = [], int $con_timeout = 5, int $timeout = 20): array
-    {
+    public function doCurl(string $url, string $type = 'GET', array $headers = [], array $post_fields = [], int $con_timeout = 5, int $timeout = 20): array {
         $crl = curl_init($url);
         if ($type === 'POST') {
             curl_setopt($crl, CURLOPT_POST, true);
@@ -91,16 +84,14 @@ class twitchWrapper
         return array('http_response_code' => $responseInfo['http_code']); // Call failed
     }
 
-    public function dateTimePassed(string $dt_to_check): bool
-    { //False on passed
+    public function dateTimePassed(string $dt_to_check): bool { //False on passed
         date_default_timezone_set('UTC');
         $dt1 = strtotime(date('Y-m-d H:i:s', strtotime($dt_to_check)));
         $dt2 = strtotime(date('Y-m-d H:i:s'));
         return $dt1 < $dt2;
     }
 
-    private function addSecondsToDateTime(int $seconds): string
-    {
+    private function addSecondsToDateTime(int $seconds): string {
         date_default_timezone_set('UTC');
         return date("Y-m-d H:i:s", strtotime("+{$seconds} sec"));
     }
