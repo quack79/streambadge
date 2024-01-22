@@ -1,4 +1,5 @@
 As this code uses the Twitch API, you need to register your application on the [Twitch Developers](https://dev.twitch.tv/console/apps/create) site.
+
 When creating the app, you will need to enter an OAuth redirect URL - use the URL where the script will be located.
 
 Choose "Website Integration" as the category and "Confidential" as Client Type
