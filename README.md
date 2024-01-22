@@ -7,9 +7,9 @@ Once you create a developer application, you are assigned a client ID, and you w
 
 You will need to edit the twitchWrapper.php file and update the following lines:
 
->    private const CLIENT_ID = 'CHANGEME';
->    private const CLIENT_SECRET = 'CHANGEME';
-Replace CHANGEME with your new ID and Secret.
+>    private const CLIENT_ID = 'CHANGEME';  
+
+>    private const CLIENT_SECRET = 'CHANGEME';  
 
 Check the location where the token will be saved on your server. It must NOT be publically accessible.
 
